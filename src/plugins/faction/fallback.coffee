@@ -58,7 +58,7 @@ plugin =
                 ['{smily:sad}']
             ]
 
-        else if /(吗|么|了没)/.test r.body
+        else if /(吗|么|了没|是谁|谁是|？)/.test r.body
 
             template = [
                 ['@{player} ']
@@ -71,6 +71,33 @@ plugin =
                 ['@{player} ']
                 ['多教主吉祥！多哥万岁万岁万万岁！']
                 ['{smily:shy}']
+            ]
+
+        else if /呵呵/.test r.body
+
+            # count words
+            repeatTimes = r.body.length - r.body.replace(/呵/g, '')
+
+            # repeat * 2
+            send = ''
+            send += '呵呵' for i in [1..repeatTimes]
+
+            template = [
+                ['@{player} ⬅️_⬅️ ']
+                [send]
+            ]
+
+        else if /哈/.test r.body
+
+            repeatTimes = r.body.length - r.body.replace(/哈/g, '')
+
+            send = ''
+            send += '哈哈' for i in [1..repeatTimes]
+
+            template = [
+                ['@{player} ']
+                [send]
+                [' {smily:miao}']
             ]
 
         else
