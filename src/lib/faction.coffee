@@ -14,7 +14,11 @@ pluginList.push plugin for pname, plugin of plugins
 
 FactionListener = GLOBAL.FactionListener =
     
+    interval: 5000
+
     init: (callback) ->
+
+        FactionListener.interval = Config.Faction.FetchInterval
 
         storage.fetch
             lastParsedGuid: null
@@ -52,11 +56,15 @@ FactionListener = GLOBAL.FactionListener =
             output:     true
         , (err) ->
             
-            #if err
-            #    logger.error '[Faction] Error: %s', err.message
+            if err and err.message is 'stderr'
+                FactionListener.interval *= 2
+                if FactionListener.interval > Config.Faction.MaxFetchInterval
+                    FactionListener.interval = Config.Faction.MaxFetchInterval
+            else
+                FactionListener.interval = Config.Faction.FetchInterval
 
             parseData ->
-                setTimeout FactionListener.start, Config.Faction.FetchInterval
+                setTimeout FactionListener.start, FactionListener.interval
 
 parseData = (callback) ->
 

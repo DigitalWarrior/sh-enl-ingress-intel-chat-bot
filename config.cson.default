@@ -12,9 +12,15 @@ Request:
     MaxParallel:   10
     MinIntervalMS: 300
 
+MungeDetector:
+
+    FetchInterval:    30 * 1000
+    MaxFetchInterval: 10 * 60 * 1000
+
 Public:
 
     FetchInterval: 120 * 1000
+    MaxFetchInterval: 5 * 60 * 60 * 1000
     MaxTimeout:    240 * 1000
 
 Tracker:
@@ -28,6 +34,7 @@ Chat:
 Faction:
 
     FetchInterval:    30 * 1000
+    MaxFetchInterval: 5 * 60 * 60 * 1000
     MaxTimeout:       60 * 1000
     TraceDays:        10
     TraceDaysDebug:   2
@@ -38,10 +45,16 @@ Faction:
 
 Database:
 
-    ConnectString: 'mongodb://localhost:27017/ingress'
-
+    ConnectString:  'mongodb://localhost:27017/ingress'
     MaxParallel:    10
-    
     Options:
-
         safe:       true
+
+Mail:
+
+    Server:     'smtp.exmail.qq.com'
+    Port:       465
+    User:       'xxx@xxx.com'
+    Pass:       'xxx'
+    Nick:       'SH-ENL-BOT'
+    Receiver:   ['xx@xx.com']

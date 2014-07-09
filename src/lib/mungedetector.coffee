@@ -14,18 +14,36 @@ Munges = GLOBAL.Munges =
 
 MungeDetector = GLOBAL.MungeDetector = 
     
+    retryInterval: 0
+
     start: (delay) ->
 
-        delay = 0.5 * 60 * 1000 if not delay?
+        delay = Config.MungeDetector.FetchInterval if not delay?
         
         setTimeout ->
 
             MungeDetector.detect (err) ->
 
                 if err
-                    logger.info '[MungeDetector] Retry in 5 seconds'
-                    MungeDetector.start 5000
+
+                    if MungeDetector.retryInterval is 0
+                        MungeDetector.retryInterval = 5000
+                    else
+                        
+                        Mail.send
+                            subject: '[SH-ENL-BOT] Failed to detect munge data'
+                            text:    'munge detect failed.'
+
+                        MungeDetector.retryInterval *= 2
+                        if MungeDetector.retryInterval > Config.MungeDetector.MaxFetchInterval
+                            MungeDetector.retryInterval = Config.MungeDetector.MaxFetchInterval
+
+                    logger.info '[MungeDetector] Retry in %d ms', MungeDetector.retryInterval
+
+                    MungeDetector.start MungeDetector.retryInterval
                 else
+
+                    MungeDetector.retryInterval = 0
                     MungeDetector.start()
 
         , delay

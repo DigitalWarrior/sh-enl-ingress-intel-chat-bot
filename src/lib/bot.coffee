@@ -178,6 +178,15 @@ Bot = GLOBAL.Bot =
                 clearTimeout timer
                 timer = null
 
+            stderr = stderr.trim()
+            if stderr.length > 0
+                
+                Mail.send
+                    subject: '[SH-ENL-BOT] Error when fetching'
+                    text:    stderr
+
+                return callback new Error('stderr'), stdout, stderr
+
             if not ex and code is 0 and signal is null
                 return callback null, stdout, stderr
 

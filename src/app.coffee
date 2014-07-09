@@ -26,6 +26,7 @@ require LIB_DIR + '/mungedetector.js'
 require LIB_DIR + '/accountinfo.js'
 require LIB_DIR + '/public.js'
 require LIB_DIR + '/faction.js'
+require LIB_DIR + '/mail.js'
 
 async = require 'async'
 

@@ -17,6 +17,7 @@
         "cheerio": "*",
         "o3o": "*",
         "lru-cache": "*",
+        "nodemailer": "*",
         "express": "*",
         "compression": "*",
         "method-override": "*",

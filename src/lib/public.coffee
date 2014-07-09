@@ -1,7 +1,10 @@
 PublicListener = GLOBAL.PublicListener =
     
+    interval: 5000
+
     init: (callback) ->
 
+        PublicListener.interval = Config.Public.FetchInterval
         callback()
 
     fetch: (callback) ->
@@ -22,9 +25,13 @@ PublicListener = GLOBAL.PublicListener =
             argv:       ['--broadcasts']
             timeout:    Config.Public.MaxTimeout
             output:     true
-        , (err) ->
+        , (err, stdout, stderr) ->
 
-            #if err
-            #    logger.error '[Public] Error: %s', err.message
+            if err and err.message is 'stderr'
+                PublicListener.interval *= 2
+                if PublicListener.interval > Config.Public.MaxFetchInterval
+                    PublicListener.interval = Config.Public.MaxFetchInterval
+            else
+                PublicListener.interval = Config.Public.FetchInterval
 
-            setTimeout PublicListener.start, Config.Public.FetchInterval
+            setTimeout PublicListener.start, PublicListener.interval
