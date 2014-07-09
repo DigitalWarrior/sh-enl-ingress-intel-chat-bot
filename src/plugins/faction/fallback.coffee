@@ -41,7 +41,7 @@ plugin =
                 ]
             ]
 
-        else if /(好|真)(屌|叼|吊|厉害)/.test r.body
+        else if /(好|真|是)(屌|叼|吊|厉害)/.test r.body
 
             template = [
                 ['@{player} 那当然~ ']
@@ -63,6 +63,14 @@ plugin =
             template = [
                 ['@{player} ']
                 ['不知道 {smily:surprise}']
+            ]
+
+        else if r.player is 'xmorose'
+            
+            template = [
+                ['@{player} ']
+                ['多教主吉祥！多哥万岁万岁万万岁！']
+                ['{smily:shy}']
             ]
 
         else
