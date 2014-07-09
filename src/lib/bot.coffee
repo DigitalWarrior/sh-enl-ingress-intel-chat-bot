@@ -179,7 +179,7 @@ Bot = GLOBAL.Bot =
                 timer = null
 
             stderr = stderr.trim()
-            if stderr.length > 0
+            if stderr.length > 0 and stderr.indexOf('ETIMEDOUT') is -1 and stderr.indexOf('socket hang up') is -1
                 
                 Mail.send
                     subject: '[SH-ENL-BOT] Error when fetching'
