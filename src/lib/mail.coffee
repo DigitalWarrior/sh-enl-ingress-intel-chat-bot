@@ -17,7 +17,8 @@ Mail = GLOBAL.Mail =
     send: (options, callback) ->
 
         if cache.has(options.text)
-            return callback new Error('ignored')
+            callback new Error('ignored') if callback?
+            return
 
         cache.set options.text, true
 
