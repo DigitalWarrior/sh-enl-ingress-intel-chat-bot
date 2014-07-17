@@ -12,8 +12,7 @@ plugin =
     process: (item, callback) ->
 
         r = FactionUtil.parseCallingBody item
-        
-        FactionUtil.send Bot.getTemplate('ping').fillPlayer(r.player).fillSmily().toString(), r.body
+        FactionUtil.send Bot.getTemplate('ping').fillPlayer(r.player).fillSmily().toString()
 
         callback()
 

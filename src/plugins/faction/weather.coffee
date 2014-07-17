@@ -185,13 +185,13 @@ plugin =
         city = plugin.parseRequestCity r.body
 
         if argv.debug
-            FactionUtil.send Bot.generateTemplate('@{player} ## weather of {city} ##').fillPlayer(r.player).fill({city: city}).toString(), r.body
+            FactionUtil.send Bot.generateTemplate('@{player} ## weather of {city} ##').fillPlayer(r.player).fill({city: city}).toString()
             return callback()
 
         plugin.getWeather city, (err, weather) ->
 
             if err
-                FactionUtil.send Bot.generateTemplate('@{player} 不会自己查啊 {smily:掀桌}').fillPlayer(r.player).fillSmily().toString(), r.body
+                FactionUtil.send Bot.generateTemplate('@{player} 不会自己查啊 {smily:掀桌}').fillPlayer(r.player).fillSmily().toString()
                 return callback()
 
             if weather.air?
@@ -219,7 +219,7 @@ plugin =
 
             template = template.fillPlayer r.player
 
-            FactionUtil.send template.toString(), r.body
+            FactionUtil.send template.toString()
             callback()
 
 module.exports = plugin

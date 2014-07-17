@@ -111,7 +111,7 @@ plugin =
                 ]
             ]
 
-        FactionUtil.send Bot.getTemplateObj(template).fillPlayer(r.player).fillSmily().toString(), r.body
+        FactionUtil.send Bot.getTemplateObj(template).fillPlayer(r.player).fillSmily().toString()
 
         callback()
 
