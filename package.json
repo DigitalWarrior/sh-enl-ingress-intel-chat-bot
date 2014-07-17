@@ -23,6 +23,7 @@
         "method-override": "*",
         "body-parser": "*",
         "randomstring": "*",
-        "moment": "*"
+        "moment": "*",
+        "nodemailer": "*"
     }
 }
