@@ -147,6 +147,7 @@ FactionUtil = GLOBAL.FactionUtil =
     
     isCallingBot: (item) ->
 
+        return true if BotName? and item.text.indexOf('@' + BotName) > -1
         return true if /@shanghaienlbot\d*/gi.test item.text
         return true if /#bot/g.test item.text
 
@@ -155,9 +156,10 @@ FactionUtil = GLOBAL.FactionUtil =
     parseCallingBody: (item) ->
 
         str = item.text
-        str = str.replace(/^\[secure\][\s\S]*?:/, '');
-        str = str.replace(/@shanghaienlbot\d*/gi, '');
-        str = str.replace(/#bot/g, '');
+        str = str.replace(/^\[secure\][\s\S]*?:/, '')
+        str = str.replace(/@shanghaienlbot\d*/gi, '')
+        str = str.replace('@' + BotName, '') if BotName?
+        str = str.replace(/#bot/g, '')
         str = str.trim()
 
         player = item.markup.SENDER1.plain

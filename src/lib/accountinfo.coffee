@@ -39,6 +39,7 @@ AccountInfo = GLOBAL.AccountInfo =
                 logger.error '[AccountInfo] %s', err.message
                 return callback err
 
+            GLOBAL.BotName = player.nickname
             logger.info '[AccountInfo] Current user: %s (%s)', player.nickname, player.team
 
             callback()
