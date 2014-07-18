@@ -147,6 +147,9 @@ FactionUtil = GLOBAL.FactionUtil =
     
     isCallingBot: (item) ->
 
+        # send by self
+        return false if item.markup.SENDER1?.plain is (BotName + ': ')
+
         return true if BotName? and item.text.indexOf('@' + BotName) > -1
         return true if /@shanghaienlbot\d*/gi.test item.text
         return true if /#bot/g.test item.text
