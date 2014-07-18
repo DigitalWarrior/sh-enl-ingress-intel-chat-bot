@@ -163,8 +163,11 @@ Bot = GLOBAL.Bot =
             Config.Auth.CookieRaw
         ].concat parameters
 
-        process = child_process.spawn 'node', argv, 
-            cwd: exporterBaseDir
+        try
+            process = child_process.spawn 'node', argv, 
+                cwd: exporterBaseDir
+        catch e
+            return callback e
 
         stdout = ''
         stderr = ''
