@@ -44,12 +44,12 @@ plugin =
             .toArray (err, rec) ->
 
                 # recent action not found / no markups
-                if err or not rec
+                if err or not rec or rec.length is 0
                     plugin.sayHello player
                 else
                     plugin.sayHello player,
-                        latE6: rec.markup.PORTAL1.latE6
-                        lngE6: rec.markup.PORTAL1.lngE6
+                        latE6: rec[0].markup.PORTAL1.latE6
+                        lngE6: rec[0].markup.PORTAL1.lngE6
 
         , Config.Public.FetchInterval * 1.5
 
