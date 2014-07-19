@@ -76,20 +76,20 @@ plugin =
         else if /呵呵/.test r.body
 
             # count words
-            repeatTimes = r.body.length - r.body.replace(/呵/g, '')
+            repeatTimes = r.body.length - r.body.replace(/呵/g, '').length
 
             # repeat * 2
             send = ''
             send += '呵呵' for i in [1..repeatTimes]
 
             template = [
-                ['@{player} ⬅️_⬅️ ']
+                ['@{player} ←_← ']
                 [send]
             ]
 
         else if /哈/.test r.body
 
-            repeatTimes = r.body.length - r.body.replace(/哈/g, '')
+            repeatTimes = r.body.length - r.body.replace(/哈/g, '').length
 
             send = ''
             send += '哈哈' for i in [1..repeatTimes]
