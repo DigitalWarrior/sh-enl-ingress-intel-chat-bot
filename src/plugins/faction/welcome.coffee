@@ -41,15 +41,15 @@ plugin =
                     $exists: true
             .sort {time: -1}
             .limit 1
-            .toArray (err, records) ->
+            .toArray (err, rec) ->
 
                 # recent action not found / no markups
-                if err or not records
+                if err or not rec
                     plugin.sayHello player
                 else
                     plugin.sayHello player,
-                        latE6: records[0].markup.PORTAL1.latE6
-                        lngE6: records[0].markup.PORTAL1.lngE6
+                        latE6: rec.markup.PORTAL1.latE6
+                        lngE6: rec.markup.PORTAL1.lngE6
 
         , Config.Public.FetchInterval * 1.5
 
