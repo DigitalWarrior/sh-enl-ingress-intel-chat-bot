@@ -24,30 +24,41 @@ plugin =
     process: (item, callback) ->
 
         if item.markup?.TEXT1?.plain is 'has completed training.'
-
             player = item.markup.SENDER1.plain
             player = player.substr 0, player.length - 2
-            if storage.welcomedAgents[player.toLowerCase()]?
-                plugin.sayHelloJoke player
-            else
-                plugin.sayHello player
-
         else
+            player = item.markup.PLAYER1.plain
 
-            plugin.sayHello item.markup.PLAYER1.plain
+        # wait enough time
+        setTimeout ->
+
+            return if storage.welcomedAgents[player.toLowerCase()]?
+
+            # get recent action
+            Database.db.collection('Chat.Public').findOne
+                'markup.PLAYER1.plain': player
+                'markup.PORTAL1':
+                    $exists: true
+            .sort {time: -1}, (err, rec) ->
+
+                # recent action not found / no markups
+                if err or not rec?
+                    plugin.sayHello player
+                else
+                    plugin.sayHello player,
+                        latE6: rec.markup.PORTAL1.latE6
+                        lngE6: rec.markup.PORTAL1.lngE6
+
+        , Config.Public.FetchInterval * 1.5
 
         callback()
 
-    sayHelloJoke: (player) ->
-
-        FactionUtil.send Bot.getTemplate('welcome.joke').fillPlayer(player).fillSmily().toString()
-
-    sayHello: (player) ->
+    sayHello: (player, options) ->
 
         return if storage.welcomedAgents[player.toLowerCase()]?
         storage.welcomedAgents[player.toLowerCase()] = true
         storage.save() if not argv.debug
 
-        FactionUtil.send Bot.getTemplate('welcome').fillPlayer(player).fillSmily().toString()
+        FactionUtil.send Bot.getTemplate('welcome').fillPlayer(player).fillSmily().toString(), options
 
 module.exports = plugin
