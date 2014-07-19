@@ -38,10 +38,10 @@ plugin =
             try
                 reg = new RegExp(match[1])
             catch e
-                FactionUtil.send Bot.getTemplate('train.fail').fillPlayer(r.player).toString()
+                FactionUtil.send Bot.getTemplate('train.fail').fillPlayer(r.player).toString(), null, r.body
                 return callback()
             storage.rules[match[1]] = match[2]
-            FactionUtil.send Bot.getTemplate('train.ok').fillPlayer(r.player).toString()
+            FactionUtil.send Bot.getTemplate('train.ok').fillPlayer(r.player).toString(), null, r.body
             storage.save() if not argv.debug
             return callback()
 
@@ -49,7 +49,7 @@ plugin =
         match = r.body.match /^train\s+(\S+)$/
         if match
             delete storage.rules[match[1]]
-            FactionUtil.send Bot.getTemplate('train.remove').fillPlayer(r.player).toString()
+            FactionUtil.send Bot.getTemplate('train.remove').fillPlayer(r.player).toString(), null, r.body
             storage.save() if not argv.debug
             return callback()
 
@@ -57,7 +57,7 @@ plugin =
         for rule, response of storage.rules
             reg = new RegExp(rule, 'i')
             if reg.test r.body
-                FactionUtil.send Bot.generateTemplate('@{player} ' + response).fillPlayer(r.player).fillSmily().toString()
+                FactionUtil.send Bot.generateTemplate('@{player} ' + response).fillPlayer(r.player).fillSmily().toString(), null, r.body
                 return callback()
 
         callback()

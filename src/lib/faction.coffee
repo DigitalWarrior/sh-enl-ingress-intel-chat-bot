@@ -172,10 +172,10 @@ FactionUtil = GLOBAL.FactionUtil =
         body:   str
         player: player
 
-    send: (message, received) ->
+    send: (message, options, msg_received) ->
 
         if argv.debug
-            logger.info "[Get] #{received}" if received?
+            logger.info "[Get] #{msg_received}" if msg_received?
             logger.info "    > #{message}"
             return
             #return completeCallback && completeCallback()
@@ -190,6 +190,10 @@ FactionUtil = GLOBAL.FactionUtil =
             latE6:   Math.round(lat * 1e6)
             lngE6:   Math.round(lng * 1e6)
             tab:     'faction'
+
+        if options?
+            data.latE6 = options.latE6 if options.latE6?
+            data.lngE6 = options.lngE6 if options.lngE6?
 
         request.push
 
@@ -207,7 +211,7 @@ FactionUtil = GLOBAL.FactionUtil =
                 else
                     thMsg = message
 
-                logger.info "[Get] #{received}" if received?
+                logger.info "[Get] #{msg_received}" if msg_received?
                 logger.info "[Send] #{thMsg}"
 
                 callback()

@@ -12,7 +12,7 @@ plugin =
     process: (item, callback) ->
 
         r = FactionUtil.parseCallingBody item
-        FactionUtil.send Bot.getTemplate('hi').fillPlayer(r.player).fillSmily().toString()
+        FactionUtil.send Bot.getTemplate('hi').fillPlayer(r.player).fillSmily().toString(), null, r.body
 
         callback()
 
