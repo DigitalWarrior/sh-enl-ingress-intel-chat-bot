@@ -35,19 +35,21 @@ plugin =
             return if storage.welcomedAgents[player.toLowerCase()]?
 
             # get recent action
-            Database.db.collection('Chat.Public').findOne
+            Database.db.collection('Chat.Public').find
                 'markup.PLAYER1.plain': player
                 'markup.PORTAL1':
                     $exists: true
-            .sort {time: -1}, (err, rec) ->
+            .sort {time: -1}
+            .limit 1
+            .toArray (err, records) ->
 
                 # recent action not found / no markups
-                if err or not rec?
+                if err or not records
                     plugin.sayHello player
                 else
                     plugin.sayHello player,
-                        latE6: rec.markup.PORTAL1.latE6
-                        lngE6: rec.markup.PORTAL1.lngE6
+                        latE6: records[0].markup.PORTAL1.latE6
+                        lngE6: records[0].markup.PORTAL1.lngE6
 
         , Config.Public.FetchInterval * 1.5
 
