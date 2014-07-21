@@ -5,7 +5,7 @@ plugin =
         return false if not FactionUtil.isCallingBot item
 
         r = FactionUtil.parseCallingBody item
-        return true if /^\[validate\]/i.test r.body
+        return 999 if /^\[validate\]/i.test r.body
 
         return false
 

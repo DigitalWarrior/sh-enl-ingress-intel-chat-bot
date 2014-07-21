@@ -17,14 +17,14 @@ plugin =
         r = FactionUtil.parseCallingBody item
 
         # train
-        return true if /^train\s+\S+\s+\S+$/.test r.body
+        return 10 if /^train\s+\S+\s+\S+$/.test r.body
 
         # remove
-        return true if /^train\s+\S+$/.test r.body
+        return 10 if /^train\s+\S+$/.test r.body
 
         for rule, response of storage.rules
             reg = new RegExp(rule, 'i')
-            return true if reg.test r.body
+            return 10 if reg.test r.body
 
         return false
 

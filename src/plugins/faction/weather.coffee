@@ -74,8 +74,8 @@ plugin =
         return false if not FactionUtil.isCallingBot item
 
         r = FactionUtil.parseCallingBody item
-        return true if r.body.toLowerCase() is 'tq'
-        return true if /(天气|tian\s*?qi|weather)/i.test r.body
+        return 999 if r.body.toLowerCase() is 'tq'
+        return 999 if /(天气|tian\s*?qi|weather)/i.test r.body
 
         return false
 

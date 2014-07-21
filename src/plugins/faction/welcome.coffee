@@ -15,9 +15,9 @@ plugin =
 
     test: (item) ->
 
-        return true if item.markup?.TEXT1?.plain is 'has completed training.'
-        return true if item.markup?.TEXT2?.plain is ' captured their first Portal.'
-        return true if item.markup?.TEXT2?.plain is ' created their first Link.'
+        return 999 if item.markup?.TEXT1?.plain is 'has completed training.'
+        return 999 if item.markup?.TEXT2?.plain is ' captured their first Portal.'
+        return 999 if item.markup?.TEXT2?.plain is ' created their first Link.'
 
         return false
 
