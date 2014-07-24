@@ -16,3 +16,5 @@ node_modules
 /bot.log
 /config.cson
 /build
+/src/templates/*.cson
+/src/plugins/faction/*.coffee

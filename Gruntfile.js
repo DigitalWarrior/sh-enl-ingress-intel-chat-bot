@@ -61,6 +61,12 @@ module.exports = function (grunt)
                     tasks: ['copy', 'coffee', 'cson']
                }
 
+          },
+
+          clean: {
+
+               build: ['build']
+
           }
 
      });
@@ -68,9 +74,10 @@ module.exports = function (grunt)
      grunt.loadNpmTasks('grunt-contrib-copy');
      grunt.loadNpmTasks('grunt-contrib-coffee');
      grunt.loadNpmTasks('grunt-contrib-watch');
+     grunt.loadNpmTasks('grunt-contrib-clean');
      grunt.loadNpmTasks('grunt-cson');
 
-     grunt.registerTask('default', ['copy', 'coffee', 'cson']);
+     grunt.registerTask('default', ['clean', 'copy', 'coffee', 'cson']);
      grunt.registerTask('debug', ['copy', 'coffee', 'cson', 'watch']);
 
 };
