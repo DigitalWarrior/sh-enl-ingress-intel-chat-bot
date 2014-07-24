@@ -51,7 +51,8 @@ Database:
         safe:       true
 
 Mail:
-
+    
+    Enabled:    true
     Server:     'smtp.exmail.qq.com'
     Port:       465
     User:       'xxx@xxx.com'
