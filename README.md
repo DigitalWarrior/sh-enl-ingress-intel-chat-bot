@@ -30,89 +30,49 @@ Features:
    ```
 
 2. Configure
+   1. Copy `config.cson.default` to `config.cson` and modify:
+      * `Auth.CookieRaw`
+        The ingress/intel cookie of the account.
+        Notice: The account can be banned at anytime, so don't use your gaming account here.
+      * `Database.ConnectString`
+         If you have modified MongoDB port or auth settings, or want to use a different database name, please modify this field.
+      * `Mail.*`
+        The bot will send mails to notify you when there are something wrong.
 
-   Copy `config.cson.default` to `config.cson` and modify:
-   
-   - `Auth.CookieRaw`
-   	 
-     The ingress/intel cookie of the account.
-     
-     Notice: The account can be banned at anytime, so don't use your gaming account here.
-   
-   - `Database.ConnectString`
-     
-     If you have modified MongoDB port or auth settings, or want to use a different database name, please modify this field.
-   
-   - `Mail.*`
-   
-     The bot will send mails to notify you when there are something wrong.
-   
-   Copy `ingress-exporter/config.cson.default` to `ingress-exporter/config.cson` and modify:
-   
-   - `Region`
-     
-     The fetching region. See [How to generate polygon data via IITC drawtool](https://github.com/breeswish/ingress-exporter#how-to-generate-polygon-data-via-iitc-drawtool).
-     
-     Notice: The polygon region data will be finally simplified to a rectangle in the chat bot, so you needn't drawing polygon very carefully.
-   
-   - `Database.ConnectString`
-     
-     Keep consistent with the `ConnectString` in `config.cson`.
+   2. Copy `ingress-exporter/config.cson.default` to `ingress-exporter/config.cson` and modify:
+      * `Region`
+        The fetching region. See [How to generate polygon data via IITC drawtool](https://github.com/breeswish/ingress-exporter#how-to-generate-polygon-data-via-iitc-drawtool).
+        Notice: The polygon region data will be finally simplified to a rectangle in the chat bot, so you needn't drawing polygon very carefully.
+      * `Database.ConnectString`
+        Keep consistent with the `ConnectString` in `config.cson`.
 
 3. Enable your desired plugin in `src/plugins/faction`, as well as their template files in `src/templates` (copy, rename, and modify templates optionally)
-   
-   - `xmorose`
-     
+   * `xmorose`
      Used by Shanghai Enlightened only.
-     
-     Template: `xmorose.cson`
-   
-   - `welcome`
-     
+     Template: `xmorose.cson`.
+   * `welcome`
      Welcome new agents.
-     
-     Template: `welcome.cson`
-   
-   - `hi`
-     
+     Template: `welcome.cson`.
+   * `hi`
      Respond hi when receiving hi/hello.
-     
-     Template: `hi.cson`
-   
-   - `ping`
-     
+     Template: `hi.cson`.
+   * `ping`
      Respond pong when receiving ping.
-     
-     Template: `ping.cson`
-   
-   - `weather`
-   
+     Template: `ping.cson`.
+   * `weather`
      Respond weather forecast and air quality (China only).
-     
-     Template: `weather.air.cson`, `weather.cson`
-   
-   - `train`
-     
+     Template: `weather.air.cson`, `weather.cson`.
+   * `train`
      Train bot.
-     
-     Syntax:
-     
-     Train: `@bot_name train RegExPattern ResponseString`
-     
-     Cancel: `@bot_name train RegExPattern`
-     
-     Template: `train.fail.cson`, `train.ok.cson`, `train.remove.cson`
-   
-   - `fallback`
-     
-     Some fallback responses.. (Chinese)
-     
-     Template: none
-   
-   - `auth`
-     
-     (experimental)
-   
+     Train Syntax: `@bot_name train RegExPattern ResponseString`. 
+     Cancel Syntax: `@bot_name train RegExPattern`.
+     Template: `train.fail.cson`, `train.ok.cson`, `train.remove.cson`.
+   * `fallback`
+     Some fallback response (Chinese).
+     Template: none.
+   * `auth`
+     (experimental).
+
 4. Install modules and compile files
    
    ```bash
