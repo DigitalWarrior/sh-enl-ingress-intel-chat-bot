@@ -1,7 +1,7 @@
 sh-enl-ingress-intel-chat-bot
 =============================
 
-An ingress chat bot developed by Shanghai Enlightened, based in ingress/intel.
+An ingress chat bot developed by Shanghai Enlightened, based on ingress/intel.
 
 Features:
 
