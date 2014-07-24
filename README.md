@@ -113,7 +113,7 @@ Features:
      
      (experimental)
    
-3. Install modules and compile files
+4. Install modules and compile files
    
    ```bash
    npm install -g grunt-cli
@@ -124,8 +124,10 @@ Features:
    grunt
    # cd ..
    ```
+   
+   Notice: You need to run `grunt` everytime you made changes (enable/disable plugin, modify template, modify config.cson)
 
-4. Run
+5. Run
 
    ```bash
    node build/app.js
@@ -138,6 +140,67 @@ Features:
    --debug true         Enable debug mode. In debug mode, messages won't be send
                         to real players
    ```
+
+## API
+
+```json
+[
+    {
+        "method": "get",
+        "path": "/manage/auth/tokens",
+        "desciption": "List all tokens",
+        "min_access_level": "LEVEL_ROOT"
+    },
+    {
+        "method": "put",
+        "path": "/manage/auth/:player/:level",
+        "desciption": "Set access-level of all tokens of an agent",
+        "min_access_level": "LEVEL_ROOT"
+    },
+    {
+        "method": "post",
+        "path": "/auth/token/:player",
+        "desciption": "Generate a new token",
+        "min_access_level": "LEVEL_GUEST"
+    },
+    {
+        "method": "get",
+        "path": "/auth/token/:token",
+        "desciption": "Get detail of a token",
+        "min_access_level": "LEVEL_GUEST"
+    },
+    {
+        "method": "get",
+        "path": "/help",
+        "desciption": "Show help messages",
+        "min_access_level": "LEVEL_GUEST"
+    },
+    {
+        "method": "get",
+        "path": "/portalhistory/:guid/:mintimestampms",
+        "desciption": "Fetch the history of a protal",
+        "min_access_level": "LEVEL_TRUSTED"
+    },
+    {
+        "method": "post",
+        "path": "/query/:collection",
+        "desciption": "Query database",
+        "min_access_level": "LEVEL_TRUSTED"
+    },
+    {
+        "method": "get",
+        "path": "/tracker/:player/:mintimestampms/:maxtimestampms",
+        "desciption": "Track a player",
+        "min_access_level": "LEVEL_TRUSTED"
+    },
+    {
+        "method": "get",
+        "path": "/tracker/:player/:page",
+        "desciption": "Track a player",
+        "min_access_level": "LEVEL_TRUSTED"
+    }
+]
+```
 
 ## License
 
