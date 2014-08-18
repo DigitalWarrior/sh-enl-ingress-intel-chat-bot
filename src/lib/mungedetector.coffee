@@ -6,11 +6,6 @@ Munges = GLOBAL.Munges =
     Failed:    false
     Data:      null
     ActiveSet: 0
-###
-    NormalizeParamCount:
-        func: (a) -> a
-        body: 'function(a){return a;}'
-###
 
 MungeDetector = GLOBAL.MungeDetector = 
     
@@ -29,7 +24,6 @@ MungeDetector = GLOBAL.MungeDetector =
                     if MungeDetector.retryInterval is 0
                         MungeDetector.retryInterval = 5000
                     else
-                        
                         Mail.send
                             subject: '[SH-ENL-BOT] Failed to detect munge data'
                             text:    'munge detect failed.'
@@ -65,8 +59,6 @@ MungeDetector = GLOBAL.MungeDetector =
                     if record?
                         Munges.Data = record.data
                         Munges.ActiveSet = record.index
-                        #Munges.NormalizeParamCount.body = record.func
-                        #Munges.NormalizeParamCount.func = Utils.createNormalizeFunction(record.func)
 
                     callback()
 
@@ -177,24 +169,16 @@ extractMunge = (callback) ->
 
         body = body.toString()
 
-        # some hacks
-        export_obj = {}
-        google =
-            maps:
-                OverlayView: ->
-                    null
         try
-            eval body + ';export_obj.nemesis = nemesis;'
-            result = Utils.extractMungeFromStock export_obj.nemesis
+            result = Utils.extractIntelData body
         catch err
+            console.log err
             callback 'fail'
             return
 
         Munges.Data      = [result]
         Munges.ActiveSet = 0
-        #Munges.NormalizeParamCount.body = Utils.extractNormalizeFunction export_obj.nemesis
-        #Munges.NormalizeParamCount.func = Utils.createNormalizeFunction Munges.NormalizeParamCount.body
-
+        
         # test it
         tryMungeSet (err) ->
 

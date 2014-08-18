@@ -161,7 +161,10 @@ Bot = GLOBAL.Bot =
             'false'
             '--cookie'
             Config.Auth.CookieRaw
-        ].concat parameters
+        ]
+
+        argv.push '--noig' if argv.noig
+        argv = argv.concat parameters
 
         try
             process = child_process.spawn 'node', argv, 
