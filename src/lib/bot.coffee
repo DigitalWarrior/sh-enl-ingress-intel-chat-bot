@@ -163,7 +163,7 @@ Bot = GLOBAL.Bot =
             Config.Auth.CookieRaw
         ]
 
-        argv.push '--noig' if argv.noig
+        argv.push '--noig true' if argv.noig
         argv = argv.concat parameters
 
         try
