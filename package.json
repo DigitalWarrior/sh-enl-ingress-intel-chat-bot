@@ -25,5 +25,8 @@
     "body-parser": "*",
     "randomstring": "*",
     "moment": "*"
+  },
+  "scripts": {
+    "start": "node build/app.js"
   }
 }

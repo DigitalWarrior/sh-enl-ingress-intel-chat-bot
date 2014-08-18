@@ -18,6 +18,8 @@ noop = GLOBAL.noop = -> null
 
 Config = GLOBAL.Config = require APP_DIR + '/config.json'
 
+logger.info '[argv] %s', process.argv.slice(2).join(' ')
+
 require LIB_DIR + '/bot.js'
 require LIB_DIR + '/leaflet.js'
 require LIB_DIR + '/utils.js'
