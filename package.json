@@ -24,7 +24,9 @@
     "method-override": "*",
     "body-parser": "*",
     "randomstring": "*",
-    "moment": "*"
+    "moment": "*",
+    "esprima": "*",
+    "escope": "*"
   },
   "scripts": {
     "start": "node build/app.js"
