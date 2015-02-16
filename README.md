@@ -1,7 +1,8 @@
-sh-enl-ingress-intel-chat-bot
+CO-enl-ingress-intel-chat-bot
 =============================
 
 An ingress chat bot developed by Shanghai Enlightened, based on ingress/intel.
+Adopted and changed by the Colorado Enlightened.
 
 Features:
 
@@ -10,10 +11,6 @@ Features:
 - Respond weather queries (China only)
 
 - Fetch public activities
-
-- API to query players' activity from fetched data
-
-- API to query portals' history (capture/ADA/Jarvis events) from fetched data (experimental)
 
 ## Dependencies
 
@@ -26,7 +23,7 @@ Features:
 1. Clone repository and submodules
 
    ```bash
-   git clone --recursive https://github.com/breeswish/sh-enl-ingress-intel-chat-bot.git
+   git clone --recursive https://github.com/DigitalWarrior/sh-enl-ingress-intel-chat-bot.git
    ```
 
 2. Configure
